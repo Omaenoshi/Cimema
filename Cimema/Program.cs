@@ -7,7 +7,8 @@ namespace Cimema
     {
         static void Main(string[] args)
         {
-            Entry.Registration();
+            var myApp = new App();
+            myApp.Run();
         }
 
         
