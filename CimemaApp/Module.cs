@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Globalization;
 using System.Threading.Channels;
 
 namespace CimemaApp
@@ -6,6 +8,8 @@ namespace CimemaApp
     public abstract class Module
     {
         protected string[] items;
+        
+        public bool pressedExit { get; set; }
 
         public abstract void RunModule();
     }
@@ -19,7 +23,22 @@ namespace CimemaApp
 
         public override void RunModule()
         {
-            throw new System.NotImplementedException();
+            if (Item.ChooseItem(items) == items[0])
+            {
+                var cinema = new Cinema();
+                Console.WriteLine("Enter the number of halls");
+                cinema.HallCount = int.Parse(Console.ReadLine() ?? throw new FormatException());
+                for (var i = 0; i < cinema.HallCount; i++)
+                {
+                    Console.WriteLine($"Enter the number of {i+1} hall");
+                    var hallNumber = int.Parse(Console.ReadLine() ?? throw new FormatException());
+                    Console.WriteLine("Enter the dimension of this hall");
+                    var dimension = int.Parse(Console.ReadLine() ?? throw new FormatException());
+                    cinema.Halls.Add(new Hall(hallNumber, dimension));
+                }
+            }
+
+            pressedExit = true;
         }
     }
 

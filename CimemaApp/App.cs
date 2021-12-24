@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 
 namespace CimemaApp
 {
@@ -6,12 +7,33 @@ namespace CimemaApp
     {
         private Person currentPerson;
         private Module currentModule;
-        private string[] menu = new[] {"Authorization", "Registration"};
+        private string[] menu = new[] {"Authorization", "Registration", "Exit"};
+        private bool pressedExit = false;
 
         public void Run()
         {
-            TryEntry();
-            Console.WriteLine("You successfully completed");
+            while (pressedExit == false)
+            {
+                Console.Clear();
+                ResetAuthentication();
+                TryEntry();
+                TryRunModule();
+            }
+        }
+
+        private void TryRunModule()
+        {
+            do
+            {
+                Console.Clear();
+                currentModule?.RunModule();
+            } while (currentModule is {pressedExit: false});
+        }
+
+        private void ResetAuthentication()
+        {
+            currentModule = null;
+            currentPerson = null;
         }
 
         private void TryEntry()
@@ -20,16 +42,21 @@ namespace CimemaApp
             do
             {
                 Console.Clear();
-                if (Item.ChooseItem(new[] {"Authorization", "Registration"}) == "Authorization")
+                switch (Item.ChooseItem(menu))
                 {
-                    currentPerson = Entry.Authorization();
-                    currentModule = currentPerson.Module;
+                    case "Authorization":
+                        currentPerson = Entry.Authorization();
+                        if (currentPerson != null)
+                            currentModule = currentPerson.Module;
+                        break;
+                    case "Registration":
+                        completedRegistration = Entry.Registration();
+                        break;
+                    case "Exit":
+                        pressedExit = true;
+                        break;
                 }
-                else
-                {
-                    completedRegistration = Entry.Registration();
-                }
-            } while (currentPerson == null && completedRegistration == false);
+            } while (currentPerson == null && completedRegistration == false && pressedExit == false);
         }
     }
 }

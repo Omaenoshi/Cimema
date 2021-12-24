@@ -1,3 +1,7 @@
 admin;admin;admin
 cashier;cashier;cashier
 maksim;vfrc1012;user
+asd;as;user
+awd;wqd;user
+ewr;er;user
+45;5efg;user

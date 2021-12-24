@@ -82,6 +82,7 @@ namespace CimemaApp
             {
                 Console.WriteLine("User with this login does not exist");
                 Console.ReadKey();
+                return null;
             }
             else if (!CheckPassword(login, password))
             {
