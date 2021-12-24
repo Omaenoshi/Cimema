@@ -4,4 +4,19 @@
     {
         
     }
+
+    public class Administrator : Module
+    {
+        
+    }
+
+    public class Cashier : Module
+    {
+        
+    }
+
+    public class Poster : Module
+    {
+        
+    }
 }

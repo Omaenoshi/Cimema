@@ -1,2 +1,3 @@
-maksim;1234
-kolya;4567
+admin;admin;admin
+cashier;cashier;cashier
+maksim;vfrc1012;user

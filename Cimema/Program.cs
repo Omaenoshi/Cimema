@@ -10,7 +10,5 @@ namespace Cimema
             var myApp = new App();
             myApp.Run();
         }
-
-        
     }
 }

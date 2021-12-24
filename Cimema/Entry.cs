@@ -3,52 +3,75 @@ using System.IO;
 
 namespace Cimema
 {
-    public class Entry
+    public static class Entry
     {
-        private bool pressedExit = false;
-        
-        public void Registration()
+        public static bool Registration()
         {
             Console.Clear();
             Console.WriteLine("Enter login");
             var login = Console.ReadLine();
             Console.WriteLine("Enter password");
             var password = Console.ReadLine();
-            if (Item.ChooseItem(new[] {"Yes", "No"}) == "Yes")
+            if (login == "" || password == "")
             {
-                if (CheckLogin(login))
-                {
-                    Console.Clear();
-                    Console.WriteLine("Your registration was successful");
-                    File.AppendAllLines("../../../Data/Logins.txt", new[]{login + ";" + password});
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("This login already exists");
-                }
+                Console.WriteLine("Can not be empty");
+                Console.ReadKey();
+                return false;
             }
-            else 
+            if (CheckLogin(login))
             {
                 Console.Clear();
-                Registration();
+                Console.WriteLine("This login already exists");
+                Console.ReadKey();
+                return false;
             }
+            Console.Clear();
+            Console.WriteLine("Your registration was successful");
+            File.AppendAllLines("../../../Data/Logins.txt", new[]{login + ";" + password + ";user"});
+            Console.ReadKey();
+            return true;
         }
 
-        private bool CheckLogin(string login)
+        private static bool CheckLogin(string login)
         {
             var logins = File.ReadAllLines("../../../Data/Logins.txt");
 
             for (var i = 0; i < logins.Length; i++)
             {
                 if (login == logins[i].Split(';')[0])
-                    return false;
+                    return true;
             }
 
-            return true;
+            return false;
         }
 
-        public void Authorization()
+        private static Module GetModule(string login)
+        {
+            Module module = null;
+            var logins = File.ReadAllLines("../../../Data/Logins.txt");
+            for (var i = 0; i < logins.Length; i++)
+            {
+                if (login == logins[i].Split(';')[0])
+                {
+                    switch (logins[i].Split(';')[2])
+                    {
+                        case "admin":
+                            module = new Administrator();
+                            break;
+                        case "cashier":
+                            module = new Cashier();
+                            break;
+                        case "user":
+                            module = new Poster();
+                            break;
+                    }
+                }
+            }
+
+            return module ?? throw new Exception("Error");
+        }
+
+        public static Person Authorization()
         {
             Console.Clear();
             Console.WriteLine("Enter your login");
@@ -60,24 +83,17 @@ namespace Cimema
                 Console.WriteLine("User with this login does not exist");
                 Console.ReadKey();
             }
-            else if (CheckPassword(login, password))
+            else if (!CheckPassword(login, password))
             {
-                Console.WriteLine("Wrong password\n" + "Try again?");
-                if (Item.ChooseItem(new[] {"Yes", "No"}) == "Yes")
-                {
-                    Console.Clear();
-                    Authorization();
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.ReadKey();
-                }
+                Console.WriteLine("Wrong password\n");
+                Console.ReadKey();
+                return null;
             }
-            
+
+            return new Person(GetModule(login), login);
         }
 
-        private bool CheckPassword(string login, string password)
+        private static bool CheckPassword(string login, string password)
         {
             var logins = File.ReadAllLines("../../../Data/Logins.txt");
 
@@ -90,7 +106,5 @@ namespace Cimema
 
             return true;
         }
-
-        
     }
 }

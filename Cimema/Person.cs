@@ -2,7 +2,14 @@
 {
     public class Person
     {
-        public string AccessLevel { get; }
+        public Module Module { get; }
         
+        public string Login { get; }
+
+        public Person(Module module, string login)
+        {
+            Module = module;
+            Login = login;
+        }
     }
 }
