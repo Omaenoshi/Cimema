@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Cimema
+namespace CimemaApp
 {
     class Program
     {

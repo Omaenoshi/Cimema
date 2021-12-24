@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cimema
+namespace CimemaApp
 {
     public class App
     {

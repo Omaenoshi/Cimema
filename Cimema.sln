@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cimema", "Cimema\Cimema.csproj", "{05565AFC-C788-4641-A4C5-47D706B14977}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CimemaApp", "CimemaApp\CimemaApp.csproj", "{05565AFC-C788-4641-A4C5-47D706B14977}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

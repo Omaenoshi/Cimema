@@ -1,4 +1,4 @@
-﻿namespace Cimema
+﻿namespace CimemaApp
 {
     public class Person
     {
