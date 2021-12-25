@@ -7,14 +7,17 @@ namespace CimemaApp
     {
         public int HallCount { get; set; }
         
-        public List<Hall> Halls { get; set; }
+        public Dictionary<int, Hall> Halls { get; set; }
         
-        public List<Movie> Movies { get; set; }
+        public List<Session> Session { get; set; }
+        
+        public Dictionary<int, Movie> Movies { get; set; }
 
         public Cinema()
         {
-            Halls = new List<Hall>();
-            Movies = new List<Movie>();
+            Halls = new Dictionary<int, Hall>();
+            Session = new List<Session>();
+            Movies = new Dictionary<int, Movie>();
         }
     }
 }

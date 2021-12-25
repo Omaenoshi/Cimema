@@ -6,15 +6,15 @@ namespace CimemaApp
     {
         public Movie CurrentMovie { get; }
         
-        public DateTime Date { get; }
+        public string Date { get; }
         
-        public DateTime Time { get; }
+        public string Time { get; }
 
         public Hall CurrentHall { get; }
         
         public double Cost { get; }
 
-        public Session(Movie movie, DateTime date, DateTime time, Hall hall, double cost)
+        public Session(Movie movie, string date, string time, Hall hall, double cost)
         {
             CurrentMovie = movie;
             Date = date;

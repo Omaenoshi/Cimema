@@ -27,7 +27,7 @@ namespace CimemaApp
             {
                 Console.Clear();
                 currentModule?.RunModule();
-            } while (currentModule is {pressedExit: false});
+            } while (currentModule is {PressedExit: false});
         }
 
         private void ResetAuthentication()
