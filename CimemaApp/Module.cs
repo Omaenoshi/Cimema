@@ -38,7 +38,7 @@ namespace CimemaApp
                 {
                     PressedExit = true;
                     var json = JsonSerializer.Serialize<Cinema>(_currentCinema);
-                    File.AppendAllLines("../../../Data/Cinemas.txt", new [] {json});
+                    File.WriteAllLines("../../../Data/Cinemas.txt", new [] {json});
                     break;
                 }
             }
@@ -129,6 +129,8 @@ namespace CimemaApp
 
     public class Cashier : Module
     {
+        private Cinema _currentCinema;
+        
         public Cashier()
         {
             Items = new[] {"Choose a movie", "Exit"};
@@ -136,7 +138,19 @@ namespace CimemaApp
 
         public override void RunModule()
         {
-            throw new System.NotImplementedException();
+            _currentCinema = new Cinema();
+            while (true)
+            {
+                Console.Clear();
+                if (Item.ChooseItem(Items) == Items[0])
+                    ChooseMovie();
+            }
+        }
+
+        private void ChooseMovie()
+        {
+            _currentCinema = JsonSerializer.Deserialize<Cinema>("../../../Data/Cinemas.txt");
+            
         }
     }
 

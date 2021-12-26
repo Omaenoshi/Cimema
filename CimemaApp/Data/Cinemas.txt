@@ -1,0 +1,1 @@
+{"HallCount":1,"Halls":{"1":{"HallNumber":1,"Dimension":1}},"Session":[{"CurrentMovie":{"Name":"1","Genre":"1","Duration":1,"Actors":"1","Id":1},"Date":"1","Time":"1","CurrentHall":{"HallNumber":1,"Dimension":1},"Cost":1}],"Movies":{"1":{"Name":"1","Genre":"1","Duration":1,"Actors":"1","Id":1}}}
