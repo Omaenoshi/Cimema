@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CimemaApp
 {
@@ -22,7 +23,15 @@ namespace CimemaApp
         
         public void WriteInFile()
         {
-            
+            for(var i = 0; i < HallCount; i++)
+            {
+                File.AppendAllLines("../../../Data/Cinemas.txt", new []
+                {
+                    HallCount + ";", 
+                    Halls[i].HallNumber + ";", 
+                    Halls[i].Dimension + ";"
+                });
+            }
         }
     }
 }
