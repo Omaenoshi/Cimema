@@ -19,5 +19,10 @@ namespace CimemaApp
             Session = new List<Session>();
             Movies = new Dictionary<int, Movie>();
         }
+        
+        public void WriteInFile()
+        {
+            
+        }
     }
 }
