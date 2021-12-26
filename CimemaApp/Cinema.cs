@@ -23,14 +23,21 @@ namespace CimemaApp
         
         public void WriteInFile()
         {
-            for(var i = 0; i < HallCount; i++)
+            WriteCinemaInfo();
+            
+        }
+
+        private void WriteCinemaInfo()
+        {
+            foreach (var el in Halls)
             {
-                File.AppendAllLines("../../../Data/Cinemas.txt", new []
+                var line = new []
                 {
-                    HallCount + ";", 
-                    Halls[i].HallNumber + ";", 
-                    Halls[i].Dimension + ";"
-                });
+                    HallCount + ";" + 
+                    el.Value.HallNumber + ";" +
+                    el.Value.Dimension + ";"
+                };
+                File.AppendAllLines("../../../Data/Cinemas.txt", line);
             }
         }
     }

@@ -35,6 +35,7 @@ namespace CimemaApp
                 else
                 {
                     PressedExit = true;
+                    _currentCinema.WriteInFile();
                     break;
                 }
 
