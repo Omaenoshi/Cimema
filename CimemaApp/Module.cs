@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
+using System.Text.Json;
 using System.Threading.Channels;
 
 namespace CimemaApp
@@ -35,10 +37,10 @@ namespace CimemaApp
                 else
                 {
                     PressedExit = true;
-                    _currentCinema.WriteInFile();
+                    var json = JsonSerializer.Serialize<Cinema>(_currentCinema);
+                    File.AppendAllLines("../../../Data/Cinemas.txt", new [] {json});
                     break;
                 }
-
             }
         }
 

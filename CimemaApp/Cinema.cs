@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 
 namespace CimemaApp
 {
@@ -23,8 +24,8 @@ namespace CimemaApp
         
         public void WriteInFile()
         {
-            WriteCinemaInfo();
-            
+           
+
         }
 
         private void WriteCinemaInfo()
