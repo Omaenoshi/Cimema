@@ -4,10 +4,11 @@ namespace CimemaApp
 {
     public static class Item
     {
-        private static int selectedIndex = 0;
+        private static int selectedIndex;
 
         public static string ChooseItem(string[] title)
         {
+            selectedIndex = 0;
             ConsoleKey keyPressed;
             Console.CursorVisible = false;
             do
